@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 @Setter
 public class Burger {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;
