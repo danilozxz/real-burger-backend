@@ -7,9 +7,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.real.model.burger.Burger;
-import com.example.real.repository.BurgerRepository;
+import com.example.real.service.BurgerService;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -18,16 +20,20 @@ import org.springframework.web.bind.annotation.RequestBody;
 @RequestMapping("api/burger")
 public class BurgerController {
     @Autowired
-    BurgerRepository repository;
+    BurgerService service;
 
     @PostMapping("add")
     public Burger insertBurger(@RequestBody Burger burger) {
-        return repository.save(burger);
+        return service.insertBurger(burger);
     }
 
     @GetMapping("all")
     public List<Burger> findAllBurgers () {
-        return repository.findAll();
+        return service.findAllBurgers();
     }
     
+    @DeleteMapping("delete/{id}")
+    public void deleteBurgerById(@PathVariable Long id) {
+        service.deleteBurgerById(id);
+    }
 }
