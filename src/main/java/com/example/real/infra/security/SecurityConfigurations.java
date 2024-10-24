@@ -30,6 +30,7 @@ public class SecurityConfigurations {
                     .requestMatchers(HttpMethod.POST, "/auth/register").permitAll()
                     .requestMatchers(HttpMethod.POST, "api/burger/add").hasRole("ADMIN")
                     .requestMatchers(HttpMethod.DELETE, "api/burger/delete/{id}").hasRole("ADMIN")
+                    .requestMatchers(HttpMethod.PUT, "api/burger/update/{id}").hasRole("ADMIN")
                     .anyRequest().authenticated()
                 )
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
